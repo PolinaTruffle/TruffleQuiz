@@ -1,0 +1,166 @@
+[
+  {
+    "question": "First impressions matter. What would most likely get you instantly attracted to a guy?",
+    "options": [
+      { "label": "A", "text": "His style. If he wears something I like, he’s got my interest.", "points": 2 },
+      { "label": "B", "text": "His humor. If he made me laugh, I’m interested.", "points": 1 },
+      { "label": "C", "text": "His confidence. If he owns the room, I’m intrigued.", "points": 5 }
+    ]
+  },
+  {
+    "question": "You find out he’s been arrested before. Your reaction?",
+    "options": [
+      { "label": "A", "text": "Depends… what was the charge?", "points": 3 },
+      { "label": "B", "text": "Total no-go for me.", "points": 1 },
+      { "label": "C", "text": "None of my business, he paid his debt to society.", "points": 5 }
+    ]
+  },
+  {
+    "question": "He’s got the latest iPhone, but his sneakers are falling apart. What do you think?",
+    "options": [
+      { "label": "A", "text": "A good phone nowadays is essential — approved.", "points": 5 },
+      { "label": "B", "text": "Maybe he just doesn’t care about looks, and a good phone means more comfort for him.", "points": 3 },
+      { "label": "C", "text": "That speaks volumes about his priorities… ciao, boy.", "points": 1 }
+    ]
+  },
+  {
+    "question": "You catch your new boyfriend being a little too flirty with another girl. How do you handle jealousy?",
+    "options": [
+      { "label": "A", "text": "I’ll go talk to the girl and get the vibe.", "points": 5 },
+      { "label": "B", "text": "I’ll go talk to him and get the vibe.", "points": 0 },
+      { "label": "C", "text": "Even minor suspicion = goodbye.", "points": 0 },
+      { "label": "D", "text": "I won’t bring it up yet, but if it happens again, we’re having a serious talk.", "points": 3 }
+    ]
+  },
+  {
+    "question": "What’s your love language?",
+    "options": [
+      { "label": "A", "text": "His full attention.", "points": 1 },
+      { "label": "B", "text": "Receiving gifts.", "points": 2 },
+      { "label": "C", "text": "Hearing sweet words.", "points": 5 }
+    ]
+  },
+  {
+    "question": "What’s your ideal second date?",
+    "options": [
+      { "label": "A", "text": "A nice dinner where we can actually talk more.", "points": 1 },
+      { "label": "B", "text": "Casual drinks—see where the night takes us.", "points": 2 },
+      { "label": "C", "text": "“Let’s just chill at my place.”", "points": 5 }
+    ]
+  },
+  {
+    "question": "You meet his friends, and they all give off major player vibes. Your reaction?",
+    "options": [
+      { "label": "A", "text": "I have some flirty friends too. His friends are not him.", "points": 5 },
+      { "label": "B", "text": "I won’t judge based on looks alone.", "points": 2 },
+      { "label": "C", "text": "If it looks like a red flag, smells like a red flag, and acts like a red flag… it ain’t green.", "points": 1 }
+    ]
+  },
+  {
+    "question": "Which fragrance instantly draws you to a man?",
+    "options": [
+      { "label": "A", "text": "Fresh like a deodorant — grass, grapefruit, eucalyptus.", "points": 2 },
+      { "label": "B", "text": "Rich and deep — leather, tobacco, oud.", "points": 4 },
+      { "label": "C", "text": "Nothing niche, something classic — wood, bergamot, pine.", "points": 5 },
+      { "label": "D", "text": "Smells don’t catch me at all.", "points": 1 }
+    ]
+  },
+  {
+    "question": "You’re at a restaurant on your second date. While you were in the bathroom, he ordered a drink for you. What do you do?",
+    "options": [
+      { "label": "A", "text": "I’ll thank him but won’t drink it. I don’t like guys deciding for me.", "points": 0 },
+      { "label": "B", "text": "If it’s tasty and he’s paying, I’ll take it. Thanks, babe!", "points": 5 },
+      { "label": "C", "text": "idk what’s in it… I’d ask him to take the first sip, and then maybe I’ll drink.", "points": 3 }
+    ]
+  },
+  {
+    "question": "You walk into his apartment for the first time. What do you notice first?",
+    "options": [
+      { "label": "A", "text": "Is it clean?", "points": 3 },
+      { "label": "B", "text": "His taste in interior design.", "points": 5 },
+      { "label": "C", "text": "Signs of another girl being here.", "points": 0 }
+    ]
+  },
+  {
+    "question": "He compliments you on something you never thought was compliment-worthy. Your reaction?",
+    "options": [
+      { "label": "A", "text": "I’d compliment him back.", "points": 3 },
+      { "label": "B", "text": "I’d joke as a defense and get confused.", "points": 5 },
+      { "label": "C", "text": "“I know, right? I’m kinda proud of it, too.”", "points": 2 }
+    ]
+  },
+  {
+    "question": "Your last situationship ended because…",
+    "options": [
+      { "label": "A", "text": "We weren’t on the same page about the future.", "points": 0 },
+      { "label": "B", "text": "He “wasn’t ready for anything serious” but didn’t want to let me go.", "points": 5 },
+      { "label": "C", "text": "We just drifted apart with no real closure.", "points": 3 }
+    ]
+  },
+  {
+    "question": "What kind of gf nickname would feel the most natural for you?",
+    "options": [
+      { "label": "A", "text": "Something from our inside context, that no one else understands.", "points": 0 },
+      { "label": "B", "text": "Something that compliments my best sides and boosts my ego.", "points": 4 },
+      { "label": "C", "text": "Something mocking or funny.", "points": 5 }
+    ]
+  },
+  {
+    "question": "Imagine a guy calls you “trouble” — how would you feel?",
+    "options": [
+      { "label": "A", "text": "Cringe.", "points": 0 },
+      { "label": "B", "text": "Flattered.", "points": 2 },
+      { "label": "C", "text": "Hooked.", "points": 5 }
+    ]
+  },
+  {
+    "question": "You’re at dinner, and the check comes. What’s your reaction?",
+    "options": [
+      { "label": "A", "text": "For me it’s natural to pay for myself, I’d insist on paying my half even when he offers to pay.", "points": 5 },
+      { "label": "B", "text": "I wait to see what he does first — if he offers to split, I’ll agree but be less horny…", "points": 3 },
+      { "label": "C", "text": "If he asks me to pay 50/50, I’ll leave the money and say we can only be friends.", "points": 0 },
+      { "label": "D", "text": "I pay for both of us.", "points": 5 }
+    ]
+  },
+  {
+    "question": "What kind of compliment makes you melt?",
+    "options": [
+      { "label": "A", "text": "“You make ignoring other girls way too easy.”", "points": 5 },
+      { "label": "B", "text": "“You’re such a vibe.”", "points": 3 },
+      { "label": "C", "text": "“I swear you make everything more fun without even trying.”", "points": 1 }
+    ]
+  },
+  {
+    "question": "He texts, “Are you free tonight?” at 10 PM. What’s your first thought?",
+    "options": [
+      { "label": "A", "text": "Nope. Plans with me need at least a little notice.", "points": 1 },
+      { "label": "B", "text": "Let’s play and see what he has in mind.", "points": 3 },
+      { "label": "C", "text": "Omg, he finally texted. *dumb smile*", "points": 5 }
+    ]
+  },
+  {
+    "question": "You bring up a serious topic, and he changes the subject to something flirty. What do you do?",
+    "options": [
+      { "label": "A", "text": "Notice and steer the convo back to something real. I’ll play this game as long as it takes.", "points": 4 },
+      { "label": "B", "text": "I let it slide as long as the vibe is good. But note he’s not husband material.", "points": 1 },
+      { "label": "C", "text": "Flirt back — if he’s not ready for serious topics yet, neither am I.", "points": 5 },
+      { "label": "D", "text": "Bye, boy. I want a man with whom I can discuss everything.", "points": 0 }
+    ]
+  },
+  {
+    "question": "He sends you a voice note instead of texting for the first time. How do you feel?",
+    "options": [
+      { "label": "A", "text": "Nice. I like when guys put in effort to communicate.", "points": 3 },
+      { "label": "B", "text": "A little weird, but I’ll listen.", "points": 2 },
+      { "label": "C", "text": "Excited — voices are way more intimate.", "points": 5 }
+    ]
+  },
+  {
+    "question": "He says, “I don’t have guy friends. Hanging out with dudes is kinda childish.” Your reaction?",
+    "options": [
+      { "label": "A", "text": "So… he only “hangs out” with girls?", "points": 0 },
+      { "label": "B", "text": "That means he’s bad at socializing. Can’t be a good sign.", "points": 1 },
+      { "label": "C", "text": "That means he’s a trustworthy homebody. Finally!", "points": 5 }
+    ]
+  }
+]
