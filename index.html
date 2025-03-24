@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <title>Girly Quiz</title>
+        <link rel="stylesheet" href="style.css?v=<script>document.write(Date.now())</script>" />
+    </head>
+<body>
+  <div class="container">
+    <div class="phone">
+      <div class="notch">
+        <div class="speaker">
+          <div class="speaker-line"></div>
+        </div>
+        <div class="camera"></div>
+      </div>
+      <div class="screen">
+        <div class="question-wrapper">
+          <p class="question" id="questionText"></p>
+        </div>
+      </div>
+    </div>
+    <div class="options" id="optionsContainer"></div>
+  </div>
+
+  <script>
+    let config = {};
+
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    async function loadConfig() {
+      const configPath = getQueryParam('config') || 'quiz1.json';
+      const response = await fetch(configPath);
+      config = await response.json();
+    }
+
+    let maxScore = 0;
+
+    async function showIntro() {
+      const container = document.querySelector('.container');
+
+      await loadQuiz(); // preload quiz data during intro
+
+      container.innerHTML = `
+        <div class="intro-screen">
+          <img src="${config.introImage}" alt="Intro" class="intro-image" />
+          <h3 class="result-message">${config.IntroTitle}</h3>
+          <p class="result-text">${config.IntroText}</p>
+          <button class="option" id="startBtn">
+            <span class="start-text">START QUIZ</span>
+          </button>
+        </div>
+      `;
+      document.getElementById('startBtn').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('startBtn').onclick = async () => {
+        const container = document.querySelector('.container');
+
+        // Fade out intro
+        container.classList.remove('fade-slide-in');
+        container.style.opacity = '0';
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Replace with phone layout
+        container.innerHTML = `
+          <div class="phone fade-slide-in">
+            <div class="notch">
+              <div class="speaker">
+                <div class="speaker-line"></div>
+              </div>
+              <div class="camera"></div>
+            </div>
+            <div class="screen">
+              <div class="question-wrapper">
+                <p class="question" id="questionText"></p>
+              </div>
+            </div>
+          </div>
+          <div class="options" id="optionsContainer"></div>
+        `;
+
+        container.style.opacity = '1';
+
+        // Wait for fade-in
+        await new Promise(resolve => setTimeout(resolve, 1));
+
+        showQuestion(); // display first question
+
+        // Scroll to show last option
+        const lastOption = document.getElementById('optionsContainer').lastElementChild;
+        if (lastOption) {
+          lastOption.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          setTimeout(() => {
+            window.scrollBy({ top: 100, behavior: 'smooth' });
+          }, 500);
+        }
+      };
+    }
+
+    let currentIndex = 0;
+    let totalQuestions = 0;
+    let quizData = [];
+    let totalPoints = 0;
+
+    async function loadQuiz() {
+      try {
+        const response = await fetch(config.questions + `?v=${Date.now()}`)
+        quizData = await response.json();
+        totalQuestions = quizData.length;
+        maxScore = quizData.reduce((sum, q) => {
+          const max = Math.max(...q.options.map(o => o.points));
+          return sum + max;
+        }, 0);
+      } catch (error) {
+        console.error('Error loading quiz:', error);
+      }
+    }
+
+    function transitionToNextQuestion() {
+      return new Promise(resolve => {
+        requestAnimationFrame(() => {
+          showQuestion();
+          setTimeout(resolve, 100); // ensure new DOM is rendered
+        });
+      });
+    }
+
+    async function showQuestion() {
+      const questionData = quizData[currentIndex];
+      const questionElem = document.getElementById('questionText');
+      questionElem.textContent = `${currentIndex + 1}. ${questionData.question.toUpperCase()}`;
+
+      document.querySelector('.screen').classList.remove('fade-slide-in');
+      void document.querySelector('.screen').offsetWidth; // force reflow
+      document.querySelector('.screen').classList.add('fade-slide-in');
+      document.querySelector('.phone').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      questionData.options.forEach(option => {
+        const btn = document.createElement('button');
+        btn.className = 'option';
+        btn.innerHTML = `
+          <span class="option-label">${option.label}</span>
+          <span class="option-text">${option.text.toUpperCase()}</span>
+        `;
+        btn.onclick = async () => {
+          totalPoints += option.points;
+          currentIndex++;
+
+          if (currentIndex > 0) {
+            // Step 1: Scroll up
+            document.querySelector('.phone').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(() => {
+              window.scrollBy({ bottom: 50, behavior: 'smooth' });
+            }, 600);
+
+            // Step 2: Wait a bit to allow scroll up
+            await new Promise(resolve => setTimeout(resolve, 600));
+          }
+
+          if (currentIndex < totalQuestions) {
+            await transitionToNextQuestion();
+
+            // Step 3: Scroll down to last option
+            const lastOption = document.getElementById('optionsContainer').lastElementChild;
+            if (lastOption) {
+              lastOption.scrollIntoView({ behavior: 'smooth', block: 'end' });
+
+              // Add a little extra scroll padding
+              setTimeout(() => {
+                window.scrollBy({ top: 100, behavior: 'smooth' });
+              }, 200);
+            }
+          } else {
+            const container = document.querySelector('.container');
+            const percent = Math.round((totalPoints / maxScore) * 100);
+            try {
+              const resultResponse = await fetch(config.results);
+              const resultData = await resultResponse.json();
+              const matchedResult = resultData.find(r => percent >= r.lower && percent <= r.upper);
+
+              container.innerHTML = `
+                <div class="result-screen">
+                  <h2 class="result-message">RESULT</h2>
+                  <img src="${matchedResult.image}" alt="Result Image" class="result-image" />
+                  <h3 class="result-message">${matchedResult.message}</h3>
+                  <div class="circle-progress">
+                    <div class="circle" style="--percent: ${percent}">
+                      <div class="inside-circle">${percent}%</div>
+                    </div>
+                  </div>
+                  <p class="result-text">${matchedResult.text}</p>
+                <a class="option" id="instabutton" href="https://www.instagram.com/pollytruffle/" target="_blank">
+                  <span class="start-text">Back to Insta</span>
+                </a>
+                </div>
+              `;
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+
+              const resultScreen = document.querySelector('.container > .result-screen');
+              resultScreen?.classList.add('fade-slide-in');
+
+              // Animate circle fill
+              const circle = resultScreen.querySelector('.circle');
+              const inside = resultScreen.querySelector('.inside-circle');
+              let current = 0;
+              const interval = setInterval(() => {
+                if (current >= percent) {
+                  clearInterval(interval);
+                  return;
+                }
+                current++;
+                circle.style.setProperty('--percent', current);
+                inside.textContent = `${current}%`;
+              }, 15);
+            } catch (err) {
+              container.innerHTML = `<p style="color: white;">Error loading result data.</p>`;
+              console.error("Failed to load results.json:", err);
+            }
+          }
+        };
+        optionsContainer.appendChild(btn);
+      });
+       
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const progress = document.getElementById('progress');
+      progress.style.width = `${((currentIndex) / totalQuestions) * 100}%`;
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await loadConfig();
+      await showIntro();
+    });
+  </script>
+</body>
+</html>
